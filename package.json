@@ -1,0 +1,11 @@
+{
+  "name": "organize-app-website",
+  "version": "1.0.0",
+  "description": "A fun app to organize your activities",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jose Quintero",
+  "license": "MIT"
+}
