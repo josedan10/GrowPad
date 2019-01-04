@@ -4,31 +4,30 @@
   "description": "A fun app to organize your activities",
   "main": "index.jsx",
   "scripts": {
-    "start:dev": "webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run compile-css\" \"react-scripts start\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "watch-css": "nodemon -e sass -x \"npm run compile-css\"",
+    "compile-css": "node-sass --watch --output ./src/css/ ./src/sass/index.scss"
   },
   "author": "Jose Quintero",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-standard-react": "^7.0.2",
+    "axios": "^0.18.0",
+    "firebase": "^5.7.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-toolbox": "^2.0.0-beta.13"
+    "react-scripts": "^2.1.2",
+    "redux": "^4.0.1"
   },
-  "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.4",
-    "css-loader": "^2.1.0",
-    "eslint": "^5.11.1",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.0",
-    "webpack-dev-server": "^3.1.14"
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
