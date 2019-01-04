@@ -10,6 +10,7 @@ import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import Lists from './pages/lists';
 
 export default class App extends Component {
   render() {
@@ -23,9 +24,10 @@ export default class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route path='/dashboard' component={Dashboard}/>            
+            <Route exact path='/dashboard' component={Dashboard}/>            
             <Route exact path="/register" component={Register}/>
             <Route exact path="/login" component={Login}/>
+            <Route exact path="/lists" component={Lists} />
             <Route component={Error404}/>            
           </Switch>
         </div>
