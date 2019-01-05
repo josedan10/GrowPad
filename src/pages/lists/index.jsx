@@ -13,25 +13,31 @@ class Lists extends Component {
 
   render() {
     const { userLists } = this.props;
-    console.log(this.props);
+    let listComp = [];
+    if (userLists) {
+      for (let list in userLists)
+        listComp.push(<List key={list} list={userLists[list]}/>);
+    }
 
     return (
       <div>
-        {userLists && userLists.map((list, index) => <List key={index} list={list}/>)}
+        {listComp}
         <CreateList></CreateList>
       </div>
     )
   }
 }
 
-
-const mapStateToProps = (state) => ({
-  userLists: state.userLists.lists
-});
+// Suscribe the component to changes of the store
+const mapStateToProps = (state) => {
+  return {
+    userLists: state.firestore.data.lists
+  }
+};
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect({
-    collection: 'lists'
-  })
+  firestoreConnect(() => [
+    'lists' // { path: '/todos' } // object notation
+  ])
 )(Lists)

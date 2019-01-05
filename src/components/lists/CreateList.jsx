@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withHandlers } from 'recompose'
+import { withFirestore } from 'react-redux-firebase'
 
 import { createList } from '../../store/actions/listActions';
 
@@ -11,6 +13,12 @@ class CreateList extends Component {
     createdAt: null,
   }
 
+  // static propTypes = {
+  //   firestore: PropTypes.shape({
+  //     add: PropTypes.func.isRequired
+  //   })
+  // }
+
   handleChange (e) {
     this.setState({
       [e.target.id]: e.target.value
@@ -19,10 +27,12 @@ class CreateList extends Component {
 
   handleSubmit (e) {
     e.preventDefault();
+    console.log(this.props);
 
     // TODO: Validate state to execute function
     // Call redux dispatcher
-    this.props.createList(this.state);
+
+    this.props.firestore.add('lists', {...this.state, createdAt: Date.now()});
   }
 
   render() {
@@ -45,10 +55,8 @@ class CreateList extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createList: (list) => dispatch(createList(list))
-  };
-}
+// export default firestoreConnect()(CreateList);
 
-export default connect(null, mapDispatchToProps)(CreateList);
+export default compose(
+  withFirestore(CreateList)
+)

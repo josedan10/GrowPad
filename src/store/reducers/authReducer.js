@@ -1,4 +1,7 @@
-const initState = {};
+const initState = {
+  // username: "josedan10",
+  // token: ""
+};
 
 const authReducer = (state = initState, action) => {
   return state;

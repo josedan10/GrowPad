@@ -8,21 +8,28 @@ import thunk from 'redux-thunk';
 
 // React, Redux and firebase
 import { createFirestoreInstance  , getFirestore } from "redux-firestore";
-import { ReactReduxFirebaseProvider, getFirebase } from "react-redux-firebase";
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 
 import App from './App';
 import rootReducer from './store/reducers/';
-import firebase, {config as fbConfig} from './firebase/config';
+import firebase from './firebase/config';
 
 const store = createStore(rootReducer,
   compose(
-    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore }))
+    // The thunk middlewares executes the AJAX requests
+    applyMiddleware(thunk.withExtraArgument({ getFirestore })),
+    // reactReduxFirebase(fbConfig, { userProfile: 'users', enableLogging: false })
   )
 );
 
+const rrfConfig = {
+  userProfile: 'users',
+  // useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+}
+
 const rrfProps = {
   firebase,
-  config: fbConfig,
+  config: rrfConfig,
   dispatch: store.dispatch,
   createFirestoreInstance
 };
