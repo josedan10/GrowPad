@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
-import { withHandlers } from 'recompose'
-import { withFirestore } from 'react-redux-firebase'
-
-import { createList } from '../../store/actions/listActions';
+import { withFirestore } from 'react-redux-firebase';
 
 class CreateList extends Component {
   state = {
@@ -12,13 +9,7 @@ class CreateList extends Component {
     description: '',
     createdAt: null,
   }
-
-  // static propTypes = {
-  //   firestore: PropTypes.shape({
-  //     add: PropTypes.func.isRequired
-  //   })
-  // }
-
+  
   handleChange (e) {
     this.setState({
       [e.target.id]: e.target.value

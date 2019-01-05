@@ -5,6 +5,7 @@
   "main": "index.jsx",
   "scripts": {
     "start": "concurrently \"npm run compile-css\" \"react-scripts start\"",
+    "start-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -16,6 +17,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "firebase": "^5.7.2",
+    "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",

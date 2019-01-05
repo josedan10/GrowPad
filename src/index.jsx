@@ -24,7 +24,7 @@ const store = createStore(rootReducer,
 
 const rrfConfig = {
   userProfile: 'users',
-  // useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+  useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
 }
 
 const rrfProps = {
