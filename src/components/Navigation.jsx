@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
-import { createBrowserHistory } from 'history';
-
-const history = createBrowserHistory();
 
 class Navigation extends Component {
 
@@ -17,22 +14,28 @@ class Navigation extends Component {
   logout (e) {
     e.preventDefault();
     this.props.firebase.logout();
-    history.push('/login');
-    window.location.reload();
+    this.props.history.push('/login');
   }
 
   render() {
-    return (
-      <nav>
-        <Link to="/register">Register</Link>
-        <Link to="/">Home</Link>
-        <Link to="/Somewhere">404</Link>
-        {(!this.props.auth.isEmpty) ? 
-          <Link to="/#" onClick={this.logout}>Logout</Link> : 
+    const navigation = (!this.props.auth.isLoaded) ? null :
+      (this.props.auth.isEmpty) ? (
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/Somewhere">404</Link>
+          <Link to="/register">Register</Link>
           <Link to="/login">Login</Link>
-        }
-      </nav>
-    )
+        </nav>
+      ) : (
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/Somewhere">404</Link>
+          <Link to="/#" onClick={this.logout}>Logout</Link>
+        </nav>
+      );
+    return (
+      navigation
+    );
   }
 }
 
@@ -46,6 +49,7 @@ const mapDispatchToProps = {
 };
 
 export default compose(
+  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   firebaseConnect()
 )(Navigation);

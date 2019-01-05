@@ -36,7 +36,6 @@ class RegisterForm extends Component {
 
   componentWillMount () {
     document.title = "Register";
-    console.log(this.props);      
   }
 
   componentDidUpdate () {

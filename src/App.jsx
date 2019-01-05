@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter,
+import { 
+  Router,
   Switch,
   Route
 } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 import AuthRoute from './components/auth/AuthRoute';
 import Error404 from './pages/Error404';
@@ -14,12 +15,17 @@ import Dashboard from './pages/Dashboard';
 import Lists from './pages/lists';
 import Navigation from './components/Navigation';
 
+const history = createBrowserHistory({
+  basename: '/',
+  forceRefresh: true,
+});
+
 
 export default class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <div>
           <Navigation></Navigation>
 
@@ -34,7 +40,7 @@ export default class App extends Component {
             <Route component={Error404}/>            
           </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
     )
   }
 }

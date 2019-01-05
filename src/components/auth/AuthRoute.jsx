@@ -9,7 +9,6 @@ import { withRouter } from 'react-router-dom';
 class AuthRoute extends React.Component {
 
   render () {
-    console.log(this.props);
     let Component = this.props.component;
 
     return (

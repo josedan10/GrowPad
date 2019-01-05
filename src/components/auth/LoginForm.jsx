@@ -3,6 +3,7 @@ import { compose } from 'recompose';
 import { connect } from'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -23,13 +24,21 @@ class LoginForm extends Component {
       createUser: PropTypes.func.isRequired
     }),
   }
+
+  componentWillMount() {
+    console.log(this.props);
+  }
   
   handleSubmit(e) {
     e.preventDefault();
 
-    console.log(this.props);
-
-    this.props.firebase.login(this.state);   
+    this.props.firebase.login(this.state)
+    .then(() => 
+      this.props.history.push('/dashboard')
+    )
+    .catch((error) => {
+      console.error("Error in login: " + error);
+    });  
   }
 
   handleChange(e) {
@@ -70,6 +79,7 @@ const mapDispatchToProps = {
 };
 
 export default compose(
+  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   firebaseConnect()
 )(LoginForm);
