@@ -23,20 +23,20 @@ const initState = {
 };
 
 const listsReducer = (state = initState, action) => {
+  // This reducer filter alls lists actions.
+
   switch (action.type) {
       case "CREATE_LIST":
         console.log("Lista creada: ", action.list);
-        break;
+        return state;
       
       case "CREATE_LIST_ERROR":
         console.error("Error creating list: ", action.err);
-        break;
+        return state;
       
       default:
-        break;
+        return state;
   }
-
-  return state;
 };
 
 export default listsReducer;

@@ -1,4 +1,6 @@
 export const createList = (list) => {
+  // Create a new list in firestore
+
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // Store the data in firestore
     const firestore = getFirestore();

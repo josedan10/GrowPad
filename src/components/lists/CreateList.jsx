@@ -21,6 +21,7 @@ class CreateList extends Component {
     e.preventDefault();
 
     // TODO: Validate state to execute function
+    // Call redux dispatcher
     this.props.createList(this.state);
   }
 
