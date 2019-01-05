@@ -7,6 +7,7 @@ class CreateList extends Component {
   state = {
     name: '',
     items: [],
+    description: '',
     createdAt: null,
   }
 
@@ -29,6 +30,9 @@ class CreateList extends Component {
         <form action="post" onSubmit={this.handleSubmit.bind(this)}>
           <div className="input-group">
             <input id="name" type="text" onChange={this.handleChange.bind(this)} placeholder="What's the new list name?"/>
+          </div>
+          <div className="input-group">
+            <textarea id="description" onChange={this.handleChange.bind(this)} placeholder="Write the list description..."></textarea>
           </div>
 
           <div className="input-group">

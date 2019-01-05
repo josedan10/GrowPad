@@ -23,6 +23,19 @@ const initState = {
 };
 
 const listsReducer = (state = initState, action) => {
+  switch (action.type) {
+      case "CREATE_LIST":
+        console.log("Lista creada: ", action.list);
+        break;
+      
+      case "CREATE_LIST_ERROR":
+        console.error("Error creating list: ", action.err);
+        break;
+      
+      default:
+        break;
+  }
+
   return state;
 };
 

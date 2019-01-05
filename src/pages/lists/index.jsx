@@ -5,6 +5,10 @@ import List from '../../components/lists/List';
 import CreateList from '../../components/lists/CreateList';
 
 class Lists extends Component {
+  componentWillMount () {
+    document.title = "Lists"
+  }
+
   render() {
     const { userLists } = this.props;
 
