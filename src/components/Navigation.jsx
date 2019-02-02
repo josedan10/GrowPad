@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
+
+/**
+ * NavBar contains links for authenticated and guest user
+ * 
+ */
 
 class Navigation extends Component {
 
@@ -21,16 +26,16 @@ class Navigation extends Component {
     const navigation = (!this.props.auth.isLoaded) ? null :
       (this.props.auth.isEmpty) ? (
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/Somewhere">404</Link>
-          <Link to="/register">Register</Link>
-          <Link to="/login">Login</Link>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/Somewhere">404</NavLink>
+          <NavLink to="/register">Register</NavLink>
+          <NavLink to="/login">Login</NavLink>
         </nav>
       ) : (
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/Somewhere">404</Link>
-          <Link to="/#" onClick={this.logout}>Logout</Link>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/Somewhere">404</NavLink>
+          <NavLink to="/#" onClick={this.logout}>Logout</NavLink>
         </nav>
       );
     return (

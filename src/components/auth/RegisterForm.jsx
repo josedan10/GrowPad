@@ -3,6 +3,7 @@ import { firebaseConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import SocialAuth from './SocialAuth';
 
 class RegisterForm extends Component {
 
@@ -112,7 +113,14 @@ class RegisterForm extends Component {
     } = this.state;
 
     if (!errors) 
-      this.props.firebase.createUser({ email, password: pass1 }, { username, firstName, lastName, email, age, sex, birthdate })
+      this.props.firebase.createUser({ email, password: pass1 }, { 
+        username, 
+        firstName, 
+        lastName, 
+        email, 
+        age, 
+        sex, 
+        birthdate })
       .then(() => this.setState({...this.state, state: 'created', msg: 'User Created'}))
       .catch((err) => this.setState({...this.state, state: 'error', message: err.message}));
       
@@ -175,6 +183,8 @@ class RegisterForm extends Component {
               <input className="btn btn-submit" type="submit" value="Register" onClick={this.createUserWithEmail}/>
             </div>
           </form>
+
+          <SocialAuth />
         </section>
       </div>
     )
