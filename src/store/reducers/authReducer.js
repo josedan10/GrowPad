@@ -1,10 +1,10 @@
 const initState = {
   // username: "josedan10",
   // token: ""
-};
+}
 
 const authReducer = (state = initState, action) => {
-  return state;
-};
+  return state
+}
 
-export default authReducer;
+export default authReducer
