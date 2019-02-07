@@ -129,58 +129,61 @@ class RegisterForm extends Component {
   render() {
 
     return (
-      <div>
+      <div className='form-auth'>
         <section>
           { this.state.msg !== '' && <span className="alert">{this.state.msg}</span>}
           <form action="post">
             <div className="input-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="Write a cool username..." onChange={this.handleChange}/>
+              <label htmlFor="username"><h3>Username</h3></label>
+              <input className='input-auth' type="text" name="username" onChange={this.handleChange}/>
             </div>
 
             <div className="input-group">
-              <label htmlFor="firstName">First Name</label>
-              <input type="text" name="firstName" placeholder="Jose" onChange={this.handleChange}/>
+              <label htmlFor="firstName"><h3>First Name</h3></label>
+              <input className='input-auth' type="text" name="firstName" onChange={this.handleChange}/>
             </div>
 
             <div className="input-group">
-              <label htmlFor="lastName">Last Name</label>
-              <input type="text" name="lastName" placeholder="Quintero" onChange={this.handleChange}/>
+              <label htmlFor="lastName"><h3>Last Name</h3></label>
+              <input className='input-auth' type="text" name="lastName" onChange={this.handleChange}/>
             </div>
 
             <div className="input-group">
-              <label htmlFor="email">Email</label>
-              <input type="email" name="email" placeholder="user@mail.com" onChange={this.handleChange}/>
+              <label htmlFor="email"><h3>Email</h3></label>
+              <input className='input-auth' type="email" name="email" onChange={this.handleChange}/>
             </div>
 
             <div className="input-group">
-              <label htmlFor="pass1">Password</label>
-              <input type="password" name="pass1" placeholder="********" onChange={this.handleChange}/>
+              <label htmlFor="pass1"><h3>Password</h3></label>
+              <input className='input-auth' type="password" name="pass1" onChange={this.handleChange}/>
             </div>
 
             <div className="input-group">
-              <label htmlFor="pass2">Confirm Password</label>
-              <input type="password" name="pass2" placeholder="********" onChange={this.handleChange}/>
+              <label htmlFor="pass2"><h3>Confirm Password</h3></label>
+              <input className='input-auth' type="password" name="pass2" onChange={this.handleChange}/>
             </div>
 
             <div className="input-group">
-              <label htmlFor="age">Age</label>
-              <input type="text" name="age" placeholder="21" onChange={this.handleChange}/>
+              <label htmlFor="age"><h3>Age</h3></label>
+              <input className='input-auth' type="text" name="age" onChange={this.handleChange}/>
             </div>
 
             <div className="input-group">
-              <label htmlFor="birthdate">Birthdate</label>
-              <input type="date" name="birthdate" onChange={this.handleChange}/>
+              <label htmlFor="birthdate"><h3>Birthdate</h3></label>
+              <input className='input-auth' type="date" name="birthdate" onChange={this.handleChange}/>
             </div>
 
             <div className="input-group">
-              <label htmlFor="sex">Sex </label>
+              <label htmlFor="sex"><h3>Sex</h3></label>
               M <input type="radio" name="sex" value="M" onChange={this.handleChange}/> 
               F <input type="radio" name="sex" value="F" onChange={this.handleChange}/>              
             </div>
 
             <div className="input-group">
-              <input className="btn btn-submit" type="submit" value="Register" onClick={this.createUserWithEmail}/>
+              <button className='btn-primary text-align-left' onClick={this.createUserWithEmail}>
+                CREATE<br />ACCOUNT
+                <i className='icon icon-arrow'></i>
+              </button>
             </div>
           </form>
 

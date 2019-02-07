@@ -1,6 +1,97 @@
+h1 {
+  font-family: Cocogoose, Arial, sans-serif;
+  font-size: 1.5rem; }
+
+h2 {
+  font-family: Cocogoose, Arial, sans-serif;
+  font-size: 1.3rem; }
+
+h3 {
+  font-family: Bahnschmift Arial, sans-serif;
+  font-size: 1.3rem; }
+
+@font-face {
+  font-family: Cocogoose;
+  src: url("../fonts/Cocogoose Pro-trial.ttf"); }
+
+@font-face {
+  font-family: Bahnschrift;
+  src: url("../fonts/bahnschrift.ttf"); }
+
 * {
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Bahnschmift Arial, sans-serif; }
 
-.container {
-  padding: 2em; }
+main,
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%; }
+
+.bg-gradient {
+  background: linear-gradient(to top right, #99B422, #3DE483);
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  top: 0;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.15); }
+  .bg-gradient--right {
+    right: 0; }
+  .bg-gradient--left {
+    left: 0; }
+
+.text-align-left {
+  text-align: left; }
+
+.btn-primary {
+  background: #1C3212;
+  border-radius: 2rem;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  color: #FFF;
+  font-size: 1.25rem;
+  text-shadow: 3px 3px 2px #000;
+  line-height: 0.75;
+  box-shadow: 3.5px 3.5px 5px rgba(30, 158, 20, 0.65); }
+
+.input-group {
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap; }
+
+.icon-arrow {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  display: inline-block;
+  margin-left: 20px; }
+
+.container, .flex-container, .flex-container-center {
+  padding: 2em;
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+.flex-container, .flex-container-center {
+  display: flex; }
+
+.flex-container-center {
+  justify-content: center;
+  align-items: center; }
+
+.form-auth {
+  position: absolute;
+  z-index: 1; }
+
+.input-auth {
+  background: rgba(28, 50, 18, 0.4);
+  border: none;
+  border-radius: 4px;
+  padding: 7px;
+  color: #FFF;
+  width: 100%; }

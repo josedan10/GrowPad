@@ -1,0 +1,13 @@
+.form-auth {
+  position: absolute;
+  z-index: 1;
+}
+
+.input-auth {
+  background: $input-auth-gradient;
+  border: none;
+  border-radius: 4px;
+  padding: 7px;
+  color: $color-text-primary;
+  width: 100%;
+}

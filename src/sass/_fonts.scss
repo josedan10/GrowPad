@@ -1,0 +1,14 @@
+$coco: Cocogoose, Arial, sans-serif;
+$bahn: Bahnschmift Arial, sans-serif;
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    @if $i <= 2 {
+      font-family: $coco;
+    }
+    @else {
+      font-family: $bahn;
+    }
+  }
+  
+}

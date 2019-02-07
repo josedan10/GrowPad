@@ -1,0 +1,17 @@
+.container {
+  padding: 2em;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.flex-container {
+  @extend .container;
+  display: flex;
+}
+
+.flex-container-center {
+  @extend .flex-container;
+  justify-content: center;
+  align-items: center;
+}
