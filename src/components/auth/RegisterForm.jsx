@@ -35,10 +35,6 @@ class RegisterForm extends Component {
     }),
   }
 
-  componentWillMount () {
-    document.title = "Register";
-  }
-
   componentDidUpdate () {
     // load backend
     if (this.state.msg !== '') {
@@ -130,54 +126,65 @@ class RegisterForm extends Component {
 
     return (
       <div className='form-auth'>
-        <section>
           { this.state.msg !== '' && <span className="alert">{this.state.msg}</span>}
-          <form action="post">
-            <div className="input-group">
-              <label htmlFor="username"><h3>Username</h3></label>
-              <input className='input-auth' type="text" name="username" onChange={this.handleChange}/>
-            </div>
+          <form className="flex-container form-container" action="post">
 
-            <div className="input-group">
-              <label htmlFor="firstName"><h3>First Name</h3></label>
-              <input className='input-auth' type="text" name="firstName" onChange={this.handleChange}/>
-            </div>
+            <section className='flex-container'>
+              <div className="input-group">
+                <label htmlFor="username">Username</label>
+                <input className='input-auth' type="text" name="username" onChange={this.handleChange}/>
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="lastName"><h3>Last Name</h3></label>
-              <input className='input-auth' type="text" name="lastName" onChange={this.handleChange}/>
-            </div>
+              <div className="input-group">
+                <label htmlFor="firstName">First Name</label>
+                <input className='input-auth' type="text" name="firstName" onChange={this.handleChange}/>
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="email"><h3>Email</h3></label>
-              <input className='input-auth' type="email" name="email" onChange={this.handleChange}/>
-            </div>
+              <div className="input-group">
+                <label htmlFor="pass1">Password</label>
+                <input className='input-auth' type="password" name="pass1" onChange={this.handleChange}/>
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="pass1"><h3>Password</h3></label>
-              <input className='input-auth' type="password" name="pass1" onChange={this.handleChange}/>
-            </div>
+              <div className="input-group">
+                <label htmlFor="age">Age</label>
+                <input className='input-auth' type="text" name="age" onChange={this.handleChange}/>
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="pass2"><h3>Confirm Password</h3></label>
-              <input className='input-auth' type="password" name="pass2" onChange={this.handleChange}/>
-            </div>
+              <div className="input-group">
+                <label htmlFor="sex">Sex</label>
+                M <input type="radio" name="sex" value="M" onChange={this.handleChange}/> 
+                F <input type="radio" name="sex" value="F" onChange={this.handleChange}/>              
+              </div>
+            </section>
 
-            <div className="input-group">
-              <label htmlFor="age"><h3>Age</h3></label>
-              <input className='input-auth' type="text" name="age" onChange={this.handleChange}/>
-            </div>
+            <section className='flex-container'>
+              <div className="input-group">
+                <label htmlFor="email">Email</label>
+                <input className='input-auth' type="email" name="email" onChange={this.handleChange}/>
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="birthdate"><h3>Birthdate</h3></label>
+              <div className="input-group">
+                <label htmlFor="lastName">Last Name</label>
+                <input className='input-auth' type="text" name="lastName" onChange={this.handleChange}/>
+              </div>
+
+              <div className="input-group">
+                <label htmlFor="pass2">Confirm Password</label>
+                <input className='input-auth' type="password" name="pass2" onChange={this.handleChange}/>
+              </div>
+
+              <div className="input-group">
+                <label htmlFor="birthday">birthday</label>
+                <input className='input-auth' type="date" name="birthday" onChange={this.handleChange}/>
+              </div>
+              
+            </section>
+            
+            {/* <div className="input-group">
+              <label htmlFor="birthdate">Birthdate</label>
               <input className='input-auth' type="date" name="birthdate" onChange={this.handleChange}/>
-            </div>
+            </div> */}
 
-            <div className="input-group">
-              <label htmlFor="sex"><h3>Sex</h3></label>
-              M <input type="radio" name="sex" value="M" onChange={this.handleChange}/> 
-              F <input type="radio" name="sex" value="F" onChange={this.handleChange}/>              
-            </div>
 
             <div className="input-group">
               <button className='btn-primary text-align-left' onClick={this.createUserWithEmail}>
@@ -188,7 +195,6 @@ class RegisterForm extends Component {
           </form>
 
           <SocialAuth />
-        </section>
       </div>
     )
   }

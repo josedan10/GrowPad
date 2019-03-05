@@ -1,6 +1,27 @@
 .form-auth {
+  color: white;
   position: absolute;
   z-index: 1;
+  max-width: 800px;
+
+  .form-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  section {
+    width: 50%;
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    font-family: $coco;
+  }
+  
+  label {
+    text-transform: uppercase;
+    font-family: $bahn;
+  }
 }
 
 .input-auth {
