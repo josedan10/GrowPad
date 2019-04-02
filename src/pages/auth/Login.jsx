@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import LoginForm from '../../components/auth/LoginForm';
+import React, { Component } from 'react'
+import LoginForm from '../../components/auth/LoginForm'
 
 export default class LoginPage extends Component {
-  render() {
+  render () {
     return (
       <div>
         <h1>Login</h1>

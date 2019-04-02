@@ -1,26 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 // Redux imports
-import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 
 // React, Redux and firebase
-import { createFirestoreInstance  , getFirestore } from "redux-firestore";
-import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import { createFirestoreInstance, getFirestore } from 'redux-firestore'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 
-import App from './App';
-import rootReducer from './store/reducers/';
-import firebase from './firebase/config';
+import App from './App'
+import rootReducer from './store/reducers/'
+import firebase from './firebase/config'
 
 const store = createStore(rootReducer,
   compose(
     // The thunk middlewares executes the AJAX requests
-    applyMiddleware(thunk.withExtraArgument({ getFirestore })),
+    applyMiddleware(thunk.withExtraArgument({ getFirestore }))
     // reactReduxFirebase(fbConfig, { userProfile: 'users', enableLogging: false })
   )
-);
+)
 
 const rrfConfig = {
   userProfile: 'users',
@@ -32,8 +32,7 @@ const rrfProps = {
   config: rrfConfig,
   dispatch: store.dispatch,
   createFirestoreInstance
-};
-
+}
 
 ReactDOM.render(
   <Provider store={store}>
@@ -42,4 +41,4 @@ ReactDOM.render(
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('root')
-);
+)

@@ -1,6 +1,7 @@
 const config = {
   sites: [
     {
+      name: 'Paginas Amarillas (Argentina)',
       baseUrl: 'https://www.paginasamarillas.com.ar',
       params: {
         pagination: 'p-',

@@ -1,13 +1,13 @@
 import axios from 'axios'
-import fs from 'fs'
-import path from 'path'
 import moment from 'moment'
+import jsBeautify from 'js-beautify'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import config from './config'
 import formatPage from './formats'
-import React from 'react'
 
-export default class Scraper extends React.Component {
+class Scraper extends React.Component {
   /**
    *Creates an instance of Scraper.
    * @memberof Scraper
@@ -33,13 +33,19 @@ export default class Scraper extends React.Component {
       status: 'sleeping',
       percentage: 0,
       page: 0,
-      actualPage: 0,
-      companiesFound: []
+      maxPages: 0,
+      companiesFound: null
     }
     this.baseUrl = './src/scraper/results/'
     // this.scrapPage = this.scrapPage.bind(this)
     // this.updateProgress = this.updateProgress.bind(this)
     this.setMessage = this.setMessage.bind(this)
+  }
+
+  static get propTypes () {
+    return {
+      setMessage: PropTypes.func.isRequired
+    }
   }
 
   setMessage (msg) {
@@ -50,7 +56,7 @@ export default class Scraper extends React.Component {
     let { setMessage, state } = this
     return new Promise(function (resolve, reject) {
       setTimeout(async () => {
-        console.log(setMessage)
+        // console.log(setMessage)
         let completeUrl = `${baseUrl}/${params.searchDir}/${keyWord}/${(params.noPaginateIndex && page === 1) ? '' : params.pagination + page + '/'}`
         try {
           // console.log(`Scraping page ${completeUrl}`)
@@ -68,13 +74,25 @@ export default class Scraper extends React.Component {
     })
   }
 
+  setMaxPages (maxPages) {
+    this.setState(prevState => (
+      {
+        ...prevState,
+        maxPages
+      }
+    ))
+  }
+
   async scrapFunction () {
     let companiesFound = []
     const { sites } = this.state.config
     const start = moment()
+    let maxPages = 0
+    config.sites.forEach(site => { maxPages += (site.maxPages * site.params.keyWords.length) })
+    this.setMaxPages(maxPages)
 
     let site
-    let actualPage = 1
+    let actualPage = 0
     let page
     let response
     let keyWord
@@ -104,12 +122,15 @@ export default class Scraper extends React.Component {
 
     const finish = moment().from(start, true)
 
+    console.log(companiesFound)
+
     this.setState(prevState => ({
       ...prevState,
       status: 'sleeping',
-      timeLapsed: finish
+      timeLapsed: finish,
+      companiesFound
     }))
-    this.setMessage(`Fetch data in ${finish}`)
+    this.setMessage(`Fetched data in ${finish}`)
     // this.saveData()
   }
 
@@ -124,11 +145,10 @@ export default class Scraper extends React.Component {
   }
 
   updateProgress (page) {
-    console.log(this)
     this.setState(prevState => (
       {
         ...prevState,
-        percentage: (page * 100 / prevState.config.sites.length * prevState.config.sites.maxPages).toFixed(2),
+        percentage: (page * 100 / prevState.maxPages).toFixed(2),
         page
       }
     ))
@@ -155,32 +175,43 @@ export default class Scraper extends React.Component {
       percentage,
       status,
       companiesFound,
-      actualPage,
+      page,
+      maxPages,
       config
     } = this.state
-
-    let maxPages = 0
-    config.sites.forEach(site => { maxPages += (site.maxPages * site.params.keyWords.length) })
 
     return (
       <div>
         <div>{ percentage }%</div>
-        <div>Reviewed { actualPage }/{ maxPages * config.sites.length } pages</div>
+        <div>Reviewed { page }/{ maxPages * config.sites.length } pages</div>
         <dir>Status: { status }</dir>
-        { companiesFound.length > 0 && (
+        { (companiesFound && companiesFound.length > 0) && (
           <pre>
-            { companiesFound }
+            <code>
+              {
+                jsBeautify(
+                  JSON.stringify(companiesFound),
+                  {
+                    indent_size: 2,
+                    space_in_empty_paren: true
+                  }
+                )
+              }
+            </code>
           </pre>
         ) }
 
         <button disabled={status !== 'sleeping'} onClick={e => this.initScraping()}>Init Scraping</button>
-        <button disabled={status !== 'sleeping'} onClick={e => this.saveData()}>Review results</button>
+        <button disabled/* disabled={status !== 'sleeping'} */ onClick={e => this.saveData()}>Save Data</button>
       </div>
     )
   }
 }
 
-// scraping test
-// let scraper = new Scraper()
+// const mapStateToProps = (state /*, ownProps*/) => {
+//   return {
+//     counter: state.counter
+//   }
+// }
 
-// scraper.initScraping()
+export default Scraper

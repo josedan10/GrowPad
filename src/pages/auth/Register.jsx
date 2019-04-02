@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import RegisterForm from '../../components/auth/RegisterForm';
+import React, { Component } from 'react'
+import RegisterForm from '../../components/auth/RegisterForm'
 
 export default class RegisterPage extends Component {
-  render() {
+  render () {
     return (
       <div>
         <h1>Registro de usuario</h1>
