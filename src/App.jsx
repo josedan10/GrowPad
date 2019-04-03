@@ -6,13 +6,14 @@ import {
 } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
+import Navigation from './components/Navigation'
 import AuthRoute from './components/auth/AuthRoute'
+import Dashboard from './pages/Dashboard'
 import Error404 from './pages/Error404'
 import Scraper from './pages/scraper'
 import Login from './pages/auth/Login'
 import Home from './pages/Home'
-import Dashboard from './pages/Dashboard'
-import Lists from './pages/lists'
+// import Lists from './pages/lists'
 
 const history = createBrowserHistory({
   basename: '/',
@@ -24,6 +25,7 @@ export default class App extends Component {
     return (
       <Router history={history}>
         <main>
+          <Navigation />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
@@ -31,7 +33,7 @@ export default class App extends Component {
             { /* Auth routes */ }
             <AuthRoute exact path='/scraper' component={Scraper} />
             <AuthRoute exact path='/dashboard' component={Dashboard} />
-            <AuthRoute exact path='/lists' component={Lists} />
+            {/* <AuthRoute exact path='/lists' component={Lists} /> */}
             <Route component={Error404} />
           </Switch>
         </main>
