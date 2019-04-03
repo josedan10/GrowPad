@@ -28,21 +28,8 @@ body,
   height: 100%;
 }
 
-.bg-gradient {
-  background: $bg-gradient;
-  position: absolute;
-  height: 100%;
-  width: 50%;
-  top: 0;
-  box-shadow: 2px 0px 5px rgba($color: #000, $alpha: .15);
-
-  &--right {
-    right: 0;
-  }
-
-  &--left {
-    left: 0;
-  }
+body {
+  background-color: $color-light;
 }
 
 .text-align-left {
@@ -52,5 +39,7 @@ body,
 @import 'components/buttons';
 @import 'components/forms';
 @import 'components/icons';
+@import 'components/popups';
 @import 'containers/index';
+@import 'pages/scraper';
 @import 'auth/login';

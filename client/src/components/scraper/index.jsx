@@ -44,7 +44,8 @@ class Scraper extends React.Component {
 
   static get propTypes () {
     return {
-      setMessage: PropTypes.func.isRequired
+      setMessage: PropTypes.func.isRequired,
+      children: PropTypes.object
     }
   }
 
@@ -184,7 +185,10 @@ class Scraper extends React.Component {
       <div>
         <div>{ percentage }%</div>
         <div>Reviewed { page }/{ maxPages * config.sites.length } pages</div>
-        <dir>Status: { status }</dir>
+        <div>Status: { status }</div>
+        { this.props.children }
+        <button className='btn btn-primary' disabled={status !== 'sleeping'} onClick={e => this.initScraping()}>Init Scraping</button>
+        <button className='btn btn-primary' disabled/* disabled={status !== 'sleeping'} */ onClick={e => this.saveData()}>Save Data</button>
         { (companiesFound && companiesFound.length > 0) && (
           <pre>
             <code>
@@ -200,9 +204,6 @@ class Scraper extends React.Component {
             </code>
           </pre>
         ) }
-
-        <button disabled={status !== 'sleeping'} onClick={e => this.initScraping()}>Init Scraping</button>
-        <button disabled/* disabled={status !== 'sleeping'} */ onClick={e => this.saveData()}>Save Data</button>
       </div>
     )
   }

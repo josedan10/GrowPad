@@ -13,6 +13,7 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import App from './App'
 import rootReducer from './store/reducers/'
 import firebase from './firebase/config'
+import Navigation from './components/Navigation'
 
 import './sass/index.scss'
 
@@ -39,7 +40,9 @@ const rrfProps = {
 ReactDOM.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
+      <App>
+        <Navigation />
+      </App>
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('root')

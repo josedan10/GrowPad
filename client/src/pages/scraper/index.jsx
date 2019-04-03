@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Scraper from '../../components/scraper'
-import ScraperConfig from '../../components/scraper/ScraperConfig'
+// import ScraperConfig from '../../components/scraper/ScraperConfig'
+import AddSiteConfig from '../../components/scraper/AddSiteConfig'
 
 export default class ScraperContainer extends Component {
   constructor (props) {
@@ -69,10 +70,12 @@ export default class ScraperContainer extends Component {
 
   render () {
     return (
-      <div>
-        <div>{ this.state.msg }</div>
-        <Scraper setMessage={this.setMessage} />
-        <ScraperConfig />
+      <div className='flex-container scraper-container'>
+        <Scraper setMessage={this.setMessage}>
+          <div className={'msg-scraper'}>{ this.state.msg }</div>
+        </Scraper>
+        <AddSiteConfig />
+        {/* <ScraperConfig /> */}
       </div>
     )
   }
