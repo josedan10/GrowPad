@@ -1,22 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
-import List from '../../components/lists/List';
-import CreateList from '../../components/lists/CreateList';
+import List from '../../components/lists/List'
+import CreateList from '../../components/lists/CreateList'
 
 class Lists extends Component {
+  // eslint-disable-next-line react/no-deprecated
   componentWillMount () {
-    document.title = "Lists"
+    document.title = 'Lists'
   }
 
-  render() {
-    const { userLists } = this.props;
-    let listComp = [];
+  static get propTypes () {
+    return {
+      userLists: PropTypes.array
+    }
+  }
+
+  render () {
+    const { userLists } = this.props
+    let listComp = []
     if (userLists) {
-      for (let list in userLists)
-        listComp.push(<List key={list} list={userLists[list]}/>);
+      for (let list in userLists) { listComp.push(<List key={list} list={userLists[list]}/>) }
     }
 
     return (
@@ -33,7 +40,7 @@ const mapStateToProps = (state) => {
   return {
     userLists: state.firestore.data.lists
   }
-};
+}
 
 export default compose(
   connect(mapStateToProps),

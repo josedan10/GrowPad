@@ -8,12 +8,11 @@ import { createBrowserHistory } from 'history'
 
 import AuthRoute from './components/auth/AuthRoute'
 import Error404 from './pages/Error404'
-// import Register from './pages/auth/Register'
+import Scraper from './pages/scraper'
 import Login from './pages/auth/Login'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
-import Clients from './pages/clients'
-// import Navigation from './components/Navigation'
+import Lists from './pages/lists'
 
 const history = createBrowserHistory({
   basename: '/',
@@ -29,9 +28,10 @@ export default class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
 
-            { /* Auth routes */}
+            { /* Auth routes */ }
+            <AuthRoute exact path='/scraper' component={Scraper} />
             <AuthRoute exact path='/dashboard' component={Dashboard} />
-            <AuthRoute exact path='/clients' component={Clients} />
+            <AuthRoute exact path='/lists' component={Lists} />
             <Route component={Error404} />
           </Switch>
         </main>

@@ -1,6 +1,7 @@
 const config = {
   sites: [
     {
+      name: 'Paginas Amarillas (Argentina)',
       baseUrl: 'https://www.paginasamarillas.com.ar',
       params: {
         pagination: 'p-',
@@ -8,9 +9,9 @@ const config = {
         searchDir: 'buscar/q',
         keyWords: [
           'restaurantes',
-          'zapaterias'
-          // 'pizzerias',
-          // 'pastelerias'
+          'zapaterias',
+          'pizzerias',
+          'pastelerias'
         ]
       },
       maxPages: 1
@@ -45,4 +46,4 @@ const config = {
   timeOut: 0
 }
 
-module.exports = config
+export default config

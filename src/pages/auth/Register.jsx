@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import RegisterForm from '../../components/auth/RegisterForm'
 
 export default class RegisterPage extends Component {
+  // eslint-disable-next-line react/no-deprecated
   componentWillMount () {
     document.title = 'GrowPad | Register'
   }

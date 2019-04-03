@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-export default class ListItem extends Component {
-  render() {
-    return (
-      <li>
-        <input type="checkbox" name="" id="" defaultChecked={this.props.item.checked}/><label> {this.props.item.itemName}</label>
-      </li>
-    )
-  }
+const ListItem = ({ item }) => (
+  <li>
+    <input type='checkbox' name='' id='' defaultChecked={item.checked} /><label> {item.itemName}</label>
+  </li>
+)
+
+ListItem.propTypes = {
+  item: PropTypes.object
 }
+
+export default ListItem
