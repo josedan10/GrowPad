@@ -21,6 +21,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
     "firebase": "^5.7.2",
     "firebase-admin": "^7.0.0",
     "firebase-functions": "^2.2.0",
@@ -29,6 +31,7 @@
     "history": "^4.7.2",
     "js-beautify": "^1.9.1",
     "moment": "^2.24.0",
+    "mongoose": "^5.4.21",
     "node-sass": "^4.11.0",
     "objects-to-csv": "^1.2.1",
     "prop-types": "^15.6.2",
@@ -43,8 +46,7 @@
     "redux": "^4.0.1",
     "redux-firestore": "^0.6.2",
     "redux-thunk": "^2.3.0",
-    "request": "^2.88.0",
-    "sass-lint": "^1.12.1"
+    "request": "^2.88.0"
   },
   "browserslist": [
     ">0.2%",

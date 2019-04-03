@@ -1,8 +1,8 @@
 .form-auth {
-  color: white;
+  color: #fff;
+  max-width: 800px;
   position: absolute;
   z-index: 1;
-  max-width: 800px;
 
   .form-container {
     flex-wrap: wrap;
@@ -10,8 +10,8 @@
   }
 
   section {
-    width: 50%;
     flex-direction: column;
+    width: 50%;
   }
 
   .btn-primary {
@@ -19,8 +19,8 @@
   }
   
   label {
-    text-transform: uppercase;
     font-family: $bahn;
+    text-transform: uppercase;
   }
 }
 
@@ -28,7 +28,7 @@
   // background: $input-auth-gradient;
   border: none;
   border-radius: 4px;
-  padding: 7px;
   color: $color-dark;
+  padding: 7px;
   width: 100%;
 }
