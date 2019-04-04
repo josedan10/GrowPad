@@ -4,8 +4,8 @@
   "description": "A fun app to organize your activities",
   "main": "index.jsx",
   "scripts": {
-    "start": "concurrently \"npm run compile-css\" \"react-scripts start\"",
-    "start-react": "react-scripts start",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "react-scripts start",
     "test-scraper": "nodemon src/scraper/index.js",
     "server": "nodemon server/api.js",
     "predeploy": "npm run build",

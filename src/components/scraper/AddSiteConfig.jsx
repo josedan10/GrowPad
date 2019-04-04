@@ -1,22 +1,28 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import axios from 'axios'
+
+import config from '../../config'
 
 export default class AddSite extends Component {
   constructor (props) {
     super(props)
     this.state = {
       page: '',
-      email: '',
-      company: '',
+      emailSelector: '',
+      companySelector: '',
       location: '',
-      facebook: '',
-      instagram: '',
-      website: '',
+      facebookSelector: '',
+      instagramSelector: '',
+      descriptionSelector: '',
+      pagEndPoint: '',
+      websiteSelector: '',
       baseUrl: '',
-      pagination: false,
-      keyWords: ''
+      keyWords: '',
+      noPaginateIndex: false
     }
     this.handleChange = this.handleChange.bind(this)
+    this.addConfig = this.addConfig.bind(this)
   }
 
   static get propTypes () {
@@ -28,86 +34,112 @@ export default class AddSite extends Component {
   isValidState () {
     let {
       page,
-      email,
+      emailSelector,
       baseUrl,
-      company,
+      companySelector,
       location,
       pagination
     } = this.state
     return (
-      page !== null && page !== '' &&
-      email !== null && email !== '' &&
-      baseUrl !== null && baseUrl !== '' &&
-      company !== null && company !== '' &&
-      location !== null && location !== '' &&
-      pagination !== null && pagination !== ''
+      page === null || page !== '' ||
+      emailSelector === null || emailSelector === '' ||
+      baseUrl === null || baseUrl === '' ||
+      companySelector === null || companySelector === '' ||
+      location === null || location === '' ||
+      pagination === null || pagination === ''
     )
   }
   // 7C:4F:B5:9F:F3:DD
 
-  addConfig () {
+  addConfig (e) {
+    e.preventDefault()
+    console.log(this.state)
+
     if (this.isValidState()) {
-      let { firebase } = this.props
-      firebase.push('sites', this.state)
+      axios
+        .post(`${config.apiUrl}/sites/newSite`,
+          {
+            data: this.state
+          }
+        )
+        .then(res => console.log(res.data.msg))
+        .catch(error => console.log('Error creating new site configuration', error))
     } else {
       console.log('Error invalid data.')
     }
   }
 
   handleChange ({ target }) {
-    this.setState(prevState => ({
-      ...prevState,
-      [target.name]: target.value
-    }))
+    if (target.id === 'noPaginateIndex') {
+      this.setState(prevState => ({
+        ...prevState,
+        [target.name]: target.checked
+      }))
+    } else {
+      this.setState(prevState => ({
+        ...prevState,
+        [target.name]: target.value
+      }))
+    }
   }
 
   render () {
     return (
       <div>
-        <form>
+        <form onSubmit={this.addConfig}>
+          <div className='input-form'>
+            <label htmlFor='page'>Page Name</label>
+            <input onChange={this.handleChange} type='text' id='page' name='page' />
+          </div>
+
           <div className='input-form'>
             <label htmlFor='baseUrl'>Base Url</label>
-            <input type='text' id='baseUrl' name='baseUrl' />
+            <input onChange={this.handleChange} type='text' id='baseUrl' name='baseUrl' />
           </div>
 
           <div className='input-form'>
             <label htmlFor='location'>Location</label>
-            <input type='text' id='location' name='location' />
+            <input onChange={this.handleChange} type='text' id='location' name='location' />
           </div>
 
           <div className='form-input'>
-            <label htmlFor='company'>Company Selector (id: #, class: .)</label>
-            <input type='text' id='company' name='company' />
+            <label htmlFor='companySelector'>Company Selector (id: #, class: .)</label>
+            <input onChange={this.handleChange} type='text' id='companySelector' name='companySelector' />
           </div>
 
           <div className='input-form'>
-            <label htmlFor='email'>Email Selector (id: #, class: .)</label>
-            <input type='text' id='email' name='email' />
+            <label htmlFor='emailSelector'>Email Selector (id: #, class: .)</label>
+            <input onChange={this.handleChange} type='text' id='emailSelector' name='emailSelector' />
           </div>
 
           <div className='input-form'>
             <label htmlFor='website'>Website Selector (id: #, class: .)</label>
-            <input type='text' id='website' name='website' />
+            <input onChange={this.handleChange} type='text' id='website' name='website' />
           </div>
 
           <div className='input-form'>
-            <label htmlFor='pagination'>Pagination Url</label>
-            <input type='text' id='pagination' name='pagination' />
+            <label htmlFor='pagEndPoint'>Pagination Url</label>
+            <input onChange={this.handleChange} type='text' id='pagEndPoint' name='pagEndPoint' />
           </div>
 
           <div className='input-form'>
-            <label htmlFor='facebook'>Facebook Selector</label>
-            <input type='text' id='facebook' name='facebook' />
+            <label htmlFor='facebookSelector'>Facebook Selector</label>
+            <input onChange={this.handleChange} type='text' id='facebookSelector' name='facebookSelector' />
           </div>
 
           <div className='input-form'>
-            <label htmlFor='instagram'>Instagram Selector</label>
-            <input type='text' id='instagram' name='instagram' />
+            <label htmlFor='instagramSelector'>Instagram Selector</label>
+            <input onChange={this.handleChange} type='text' id='instagramSelector' name='instagramSelector' />
           </div>
 
           <div className='input-form'>
             <label htmlFor='keywords'>Keywords Selector</label>
-            <input type='text' id='keywords' name='keywords' />
+            <input onChange={this.handleChange} type='text' id='keywords' name='keywords' />
+          </div>
+
+          <div className='input-for'>
+            <label htmlFor='noPaginateIndex'>No paginate Index</label>
+            <input onChange={this.handleChange} type='checkbox' name='noPaginateIndex' id='noPaginateIndex' />
           </div>
 
           <input className='btn btn-primary' type='submit' value='Add new config' />

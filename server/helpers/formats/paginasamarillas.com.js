@@ -1,5 +1,5 @@
-import cheerio from 'cheerio'
-import axios from 'axios'
+const cheerio = require('cheerio')
+const axios = require('axios')
 
 const regExIg = /instagram.com/g
 const regExFb = /facebook.com/g
@@ -58,7 +58,7 @@ const reviewWebsite = (link) => {
   console.log(link)
 }
 
-export default async (html) => {
+module.exports = async (html) => {
   try {
     // console.log('Formato de paginas amarillas')
     let $ = cheerio.load(html)

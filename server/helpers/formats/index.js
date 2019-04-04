@@ -1,6 +1,6 @@
-import paginasAmarillas from './paginasamarillas.com'
+const paginasAmarillas = require('./paginasamarillas.com')
 
-export default async (page) => {
+module.exports = async (page) => {
   try {
     switch (page.baseUrl) {
       case 'https://www.paginasamarillas.com.ar':

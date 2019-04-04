@@ -4,13 +4,26 @@ import {
   NEW_SCRAP_CONFIG
 } from '../actions/scraperActions'
 
+import config from '../../config'
+
+import axios from 'axios'
+
 // Set initial state from db
 
-const initState = {
-  sites: [],
-  search: {
-    sites: [],
-    timeOut: 0
+const getSiteNames = async () => {
+  return axios
+    .get(`${config.apiUrl}/sites/getSitesNames`)
+    .then(res => res.data)
+    .catch(error => console.log(error))
+}
+
+const initState = async () => {
+  return {
+    sites: await getSiteNames(),
+    search: {
+      sites: [],
+      timeOut: 0
+    }
   }
 }
 
@@ -35,7 +48,7 @@ export default (state = initState, action) => {
       }
 
     case NEW_SCRAP_CONFIG:
-      // Launch firebase config
+      // Launch server config
       return {
         ...state,
         sites: [...state.site, action.site]
